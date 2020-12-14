@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.nemesiss.dev.logback_android_logviewer">
+
+    <application>
+        <activity android:name=".activity.LogFileViewerActivity"
+                android:label="@string/log_viewer_activity_label">
+        </activity>
+        <activity
+                android:name=".activity.LogFileExplorerActivity"
+                android:label="@string/log_explorer_activity_label"
+                android:launchMode="singleTask">
+        </activity>
+    </application>
+
+</manifest>

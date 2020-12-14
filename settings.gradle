@@ -1,0 +1,3 @@
+rootProject.name='logback-android-logviewer-demoapp'
+include ':app'
+include ':logback-android-logviewer'

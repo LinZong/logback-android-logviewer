@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activity.LogFileExplorerActivity">
+
+    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:textSize="15sp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:id="@+id/logviewer_pathgroup_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/logviewer_file_swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/logviewer_filelist_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

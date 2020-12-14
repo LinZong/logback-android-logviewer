@@ -1,0 +1,7 @@
+<resources>
+    <string name="log_explorer_activity_label">Log Explorer</string>
+    <string name="log_viewer_activity_label">Log Viewer</string>
+    <string name="empty_folder_hint">No file or directory</string>
+    <string name="code_loading">Loading and parsing log file, Please wait…</string>
+    <string name="code_loading_failed">Cannot load logfile: </string>
+</resources>

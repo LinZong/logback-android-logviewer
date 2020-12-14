@@ -1,0 +1,8 @@
+<resources>
+    <string name="log_explorer_activity_label">日志目录查看器</string>
+    <string name="log_viewer_activity_label">日志内容查看器</string>
+    <string name="empty_folder_hint">文件夹为空</string>
+    <string name="code_loading">正在解析日志文件, 请稍等</string>
+    <string name="code_loading_failed">无法加载日志文件: </string>
+
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:clickable="true"
+                                             android:focusable="true"
+                                             android:background="?attr/selectableItemBackground"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="64dp">
+
+    <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="H,1:1"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/logviewer_filetype_image"/>
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/logviewer_filename"
+            android:layout_marginStart="12dp"
+            style="@style/FileTextTileMarquee"
+            app:layout_constraintTop_toTopOf="@+id/logviewer_filetype_image"
+            app:layout_constraintBottom_toBottomOf="@+id/logviewer_filetype_image"
+            app:layout_constraintStart_toEndOf="@+id/logviewer_filetype_image"
+            app:layout_constraintVertical_bias="0.08"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:id="@+id/logviewer_file_modified_time"
+            app:layout_constraintTop_toBottomOf="@+id/logviewer_filename"
+            app:layout_constraintStart_toStartOf="@+id/logviewer_filename"/>
+
+</android.support.constraint.ConstraintLayout>
