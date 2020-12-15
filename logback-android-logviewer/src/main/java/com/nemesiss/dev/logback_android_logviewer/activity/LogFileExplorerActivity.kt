@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.text.SpannableStringBuilder
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.nemesiss.dev.logback_android_logviewer.OnPathChangedListener
 import com.nemesiss.dev.logback_android_logviewer.PathResolver
 import com.nemesiss.dev.logback_android_logviewer.R
@@ -16,6 +19,7 @@ import com.nemesiss.dev.logback_android_logviewer.adapter.view.FileItemVO
 import com.nemesiss.dev.logback_android_logviewer.adapter.view.FileListAdapter
 import com.nemesiss.dev.logback_android_logviewer.adapter.view.FileType
 import com.nemesiss.dev.logback_android_logviewer.adapter.view.OnFileItemClickedListener
+import com.nemesiss.dev.logback_android_logviewer.utils.Utils
 import kotlinx.android.synthetic.main.activity_log_viewer.*
 import java.io.File
 

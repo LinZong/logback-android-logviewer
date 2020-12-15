@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import com.nemesiss.dev.logback_android_logviewer.R
 import kotlinx.android.synthetic.main.activity_log_file_viewer.*
@@ -41,6 +42,7 @@ class LogFileViewerActivity : AppCompatActivity() {
                     title = logFilePath.substring(logFilePath.lastIndexOf("/") + 1)
                 }
             } catch (e: Exception) {
+                Log.e("LogFileViewerActivity", e.message, e)
                 runOnUiThread {
                     handleParseFailed(logFilePath)
                 }

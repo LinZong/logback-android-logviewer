@@ -1,4 +1,4 @@
-package com.nemesiss.dev.logback_android_logviewer
+package com.nemesiss.dev.logback_android_logviewer.utils
 
 import android.app.Activity
 import android.view.View
