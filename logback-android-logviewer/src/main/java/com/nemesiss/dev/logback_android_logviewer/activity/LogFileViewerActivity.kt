@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import com.nemesiss.dev.logback_android_logviewer.R
 import kotlinx.android.synthetic.main.activity_log_file_viewer.*
@@ -29,6 +30,14 @@ class LogFileViewerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_log_file_viewer)
         val logFilePath = intent.getStringExtra(LOGFILE_ABS_PATH_INTENT_KEY) ?: ""
         parseLogFile(logFilePath)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            android.R.id.home -> finish()
+        }
+        return true
     }
 
     private fun parseLogFile(logFilePath: String) {
