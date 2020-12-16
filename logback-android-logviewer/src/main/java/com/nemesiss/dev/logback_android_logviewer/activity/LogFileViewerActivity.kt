@@ -10,7 +10,6 @@ import android.view.View
 import com.nemesiss.dev.logback_android_logviewer.R
 import kotlinx.android.synthetic.main.activity_log_file_viewer.*
 import java.io.File
-import java.lang.Exception
 
 class LogFileViewerActivity : AppCompatActivity() {
 
