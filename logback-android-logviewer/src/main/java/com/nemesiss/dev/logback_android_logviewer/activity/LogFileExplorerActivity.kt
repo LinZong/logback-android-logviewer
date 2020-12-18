@@ -17,8 +17,11 @@ import com.nemesiss.dev.logback_android_logviewer.adapter.view.FileType
 import com.nemesiss.dev.logback_android_logviewer.adapter.view.OnFileItemClickedListener
 import kotlinx.android.synthetic.main.activity_log_viewer.*
 import java.io.File
+import java.util.*
 
 class LogFileExplorerActivity : AppCompatActivity() {
+
+    private data class ScrollState(val path: String, val position: Int)
 
     private lateinit var logDirsAdapter: LogDirectoryAdapter
     private lateinit var dirListAdapter: ArrayAdapter<String>
@@ -26,20 +29,25 @@ class LogFileExplorerActivity : AppCompatActivity() {
     private lateinit var pathResolver: PathResolver
     private lateinit var fileListAdapter: FileListAdapter
     private lateinit var fileListLayoutManager: LinearLayoutManager
+    private val scrollPositions: Stack<ScrollState> = Stack()
+
 
     private val pathChangedListAdapter = object : OnPathChangedListener {
         override fun onEnter(oldPath: String, newPath: String) {
             fileListAdapter.setRootDirs(File(newPath))
+            recordFileListScrollPosition(oldPath)
             logviewer_pathgroup_spinner.safeSetText(newPath)
         }
 
         override fun onExit(oldPath: String, newPath: String, isRoot: Boolean) {
             fileListAdapter.setRootDirs(File(newPath))
+            recoverFileListScrollPosition(newPath)
             logviewer_pathgroup_spinner.safeSetText(newPath)
         }
 
         override fun onRootDirChanged(newRootDir: String) {
             fileListAdapter.setRootDirs(File(newRootDir))
+            scrollPositions.clear()
         }
     }
 
@@ -48,7 +56,6 @@ class LogFileExplorerActivity : AppCompatActivity() {
             if (fileItemVO.fileType == FileType.FOLDER) {
                 pathResolver.enter(fileItemVO.fileName)
             } else {
-                // TODO enter code viewer.
                 fileItemVO.original?.let { file ->
                     LogFileViewerActivity.start(this@LogFileExplorerActivity, file.absolutePath)
                 }
@@ -80,17 +87,31 @@ class LogFileExplorerActivity : AppCompatActivity() {
         fileListAdapter = FileListAdapter(File(logDirs[0]))
         fileListAdapter.fileItemClickedListener = fileItemClickedListener
         fileListLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
         logviewer_filelist_recyclerview.apply {
             adapter = fileListAdapter
             layoutManager = fileListLayoutManager
         }
         pathResolver.addPathChangedListener(pathChangedListAdapter)
+
         logviewer_file_swipe_refresh.apply {
             setColorSchemeColors(Color.RED, Color.MAGENTA, Color.GRAY)
             setOnRefreshListener {
                 pathResolver.refresh()
                 isRefreshing = false
             }
+        }
+    }
+
+    private fun recordFileListScrollPosition(path: String) {
+        val position = fileListLayoutManager.findFirstVisibleItemPosition()
+        scrollPositions.push(ScrollState(path, position))
+    }
+
+    private fun recoverFileListScrollPosition(path: String) {
+        val state = scrollPositions.pop()
+        if (state.path == path) {
+            fileListLayoutManager.scrollToPosition(state.position)
         }
     }
 

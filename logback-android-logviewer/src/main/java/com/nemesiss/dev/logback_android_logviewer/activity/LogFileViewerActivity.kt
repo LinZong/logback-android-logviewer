@@ -45,9 +45,8 @@ class LogFileViewerActivity : AppCompatActivity() {
                 val code = File(logFilePath).readText()
                 runOnUiThread {
                     code_view.setCode(code)
-                    code_view.visibility = View.VISIBLE
-                    code_loading_container.visibility = View.GONE
                     title = logFilePath.substring(logFilePath.lastIndexOf("/") + 1)
+                    switchLoadingPlaceholder()
                 }
             } catch (e: Exception) {
                 Log.e("LogFileViewerActivity", e.message, e)
@@ -56,6 +55,11 @@ class LogFileViewerActivity : AppCompatActivity() {
                 }
             }
         }.start()
+    }
+
+    private fun switchLoadingPlaceholder() {
+        code_view.visibility = View.VISIBLE
+        code_loading_container.visibility = View.GONE
     }
 
     private fun handleParseFailed(logFilePath: String) {
