@@ -2,6 +2,7 @@ package com.nemesiss.dev.logback_android_logviewer.activity
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.text.SpannableStringBuilder
@@ -21,7 +22,7 @@ import java.util.*
 
 class LogFileExplorerActivity : AppCompatActivity() {
 
-    private data class ScrollState(val path: String, val position: Int)
+    private data class ScrollState(val path: String, val state: Parcelable)
 
     private lateinit var logDirsAdapter: LogDirectoryAdapter
     private lateinit var dirListAdapter: ArrayAdapter<String>
@@ -104,14 +105,14 @@ class LogFileExplorerActivity : AppCompatActivity() {
     }
 
     private fun recordFileListScrollPosition(path: String) {
-        val position = fileListLayoutManager.findFirstVisibleItemPosition()
-        scrollPositions.push(ScrollState(path, position))
+        val state = fileListLayoutManager.onSaveInstanceState()!!
+        scrollPositions.push(ScrollState(path, state))
     }
 
     private fun recoverFileListScrollPosition(path: String) {
         val state = scrollPositions.pop()
         if (state.path == path) {
-            fileListLayoutManager.scrollToPosition(state.position)
+            fileListLayoutManager.onRestoreInstanceState(state.state)
         }
     }
 
