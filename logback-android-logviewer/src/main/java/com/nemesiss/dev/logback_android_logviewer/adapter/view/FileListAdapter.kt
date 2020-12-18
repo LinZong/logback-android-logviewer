@@ -107,6 +107,11 @@ class FileListAdapter(private var rootDir: File) : RecyclerView.Adapter<Recycler
             val files = fileItems.filter { file -> file.isFile }.sortedBy { file -> file.name }
             val finalFiles = dirs + files
             currentFileVoList = finalFiles.map { item -> convertFileToFileItemVO(item) }
+            if (currentFileVoList.isEmpty()) {
+                setEmptyPlaceholder()
+                return
+            }
+            // it's not empty.
             notifyDataSetChanged()
         } catch (e: Exception) {
             setEmptyPlaceholder()
