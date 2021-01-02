@@ -148,3 +148,9 @@
    ```
 
    获取Logger。
+   
+7. 如果想在端侧启动日志文件查看器，可以
+
+   ```kotlin
+   startActivity(Intent(this, LogFileExplorerActivity::class.java))
+   ```
