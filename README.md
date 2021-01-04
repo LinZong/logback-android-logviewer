@@ -12,12 +12,14 @@
    buildscript {
        ext.kotlin_version = '1.3.61'
        repositories {
+           maven { url "https://jitpack.io" }
            maven { url 'http://47.107.119.93:8090/repository/maven-public/' }
        }
    }
    
    allprojects {
        repositories {
+           maven { url "https://jitpack.io" }
            maven { url 'http://47.107.119.93:8090/repository/maven-public/' }
        }
    }
