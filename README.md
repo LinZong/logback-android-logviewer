@@ -28,7 +28,11 @@
 2. `app`模块内的`build.gradle`添加以下依赖
 
    ```groovy
-       // add viewer support
+   	// logback adapter    
+   	implementation 'org.slf4j:slf4j-api:1.7.25'
+   	// logback.xml condition support
+       implementation 'io.apisense:rhino-android:1.1.1'    
+   	// logback-android core dependency
        implementation 'com.github.tony19:logback-android:2.0.2-SNAPSHOT'
        // log viewer
        implementation('com.nemesiss.dev:logback-android-logviewer:1.0.0-SNAPSHOT') {
