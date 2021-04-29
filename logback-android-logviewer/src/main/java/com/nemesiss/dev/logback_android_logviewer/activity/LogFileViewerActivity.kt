@@ -43,8 +43,8 @@ class LogFileViewerActivity : AppCompatActivity() {
         Thread {
             try {
                 val code = File(logFilePath).readText()
+                code_view.setCode(code)
                 runOnUiThread {
-                    code_view.setCode(code)
                     title = logFilePath.substring(logFilePath.lastIndexOf("/") + 1)
                     switchLoadingPlaceholder()
                 }
